@@ -23,6 +23,13 @@ const nextConfig: NextConfig = {
         hostname: "example.com",
         port: "",
       },
+       {
+        protocol: "https",
+        hostname: "blogs.purecode.ai",
+        port: "",
+        // you can add pathname if you want to restrict paths, e.g.:
+        // pathname: "/blogs/wp-content/uploads/**"
+      },
     ],
   },
 };
