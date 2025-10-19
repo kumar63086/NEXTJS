@@ -7,17 +7,19 @@ import {
   LoginLink,
   LogoutLink,
 } from "@kinde-oss/kinde-auth-nextjs/components";
+
 import { useKindeBrowserClient } from "@kinde-oss/kinde-auth-nextjs";
 
 export function Navbar() {
-  const { isAuthenticated, user } = useKindeBrowserClient();
+  const { getUser } = useKindeBrowserClient();
+  const user = getUser();
 
   return (
     <nav className="py-5 flex items-center justify-between">
       <div className="flex items-center gap-6">
         <Link href="/">
           <h1 className="text-3xl font-semibold">
-            Blog<span className="text-blue-500">kumar</span>
+            Blog<span className="text-blue-500">Marshal</span>
           </h1>
         </Link>
 
@@ -37,11 +39,9 @@ export function Navbar() {
         </div>
       </div>
 
-      {isAuthenticated ? (
+      {user ? (
         <div className="flex items-center gap-4">
-          <p className="text-sm font-medium text-gray-700">
-            {user?.given_name ?? "User"}
-          </p>
+          <p>{user.given_name}</p>
           <LogoutLink className={buttonVariants({ variant: "secondary" })}>
             Logout
           </LogoutLink>
